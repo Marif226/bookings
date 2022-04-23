@@ -1,14 +1,47 @@
 {{template "base" .}}
 {{define "content"}}
+    <div id="main-carousel" class="carousel slide carousel-fade" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#main-carousel" data-slide-to="0" class="active"></li>
+            <li data-target="#main-carousel" data-slide-to="1"></li>
+            <li data-target="#main-carousel" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="/static/images/woman-laptop.png" class="d-block w-100" alt="Woman and laptop">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>First slide label</h5>
+                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="/static/images/outside.png" class="d-block w-100" alt="Outside">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Second slide label</h5>
+                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="/static/images/tray.png" class="d-block w-100" alt="Tray with coffee">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Third slide label</h5>
+                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="container">
         <div class="row">
             <div class="col">
-                <h1>Welcome to home page!</h1>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus, exercitationem. Alias esse eaque
-                    officiis corrupti. Aut unde illum id! Deleniti mollitia modi ut saepe similique nihil tempora, numquam
-                    quaerat dignissimos.</p>
-
-                <img src="/static/images/ps5-box.jpg" alt="">
+                <h1 class="text-center mt-4">Welcome to Fort Smythe Bed and Breakfast</h1>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste sequi illo tempore eaque laborum minima
+                    corporis blanditiis porro, voluptate, eius sed mollitia nostrum sapiente repellat reprehenderit? Ullam
+                    rem veniam facere.</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col text-center">
+                <a href="/search-availability" class="btn btn-success">Make Reservation Now</a>
             </div>
         </div>
     </div>

@@ -1,0 +1,49 @@
+{{template "base" .}}
+{{define "content"}}
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <img src="/static/images/generals-quarters.png"
+                    class="room-img img-fluid img-thumbnail mx-auto d-block" alt="room image">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <h1 class="text-center mt-4">General's Quarters</h1>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste sequi illo tempore eaque laborum minima
+                    corporis blanditiis porro, voluptate, eius sed mollitia nostrum sapiente repellat reprehenderit?
+                    Ullam rem veniam facere.</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col text-center">
+                <a href="#!" class="btn btn-success" id="check-availability-btn">Check Availability</a>
+            </div>
+        </div>
+    </div>
+{{end}}
+
+{{define "js"}}
+    <script>
+        document.getElementById("check-availability-btn").addEventListener("click", function () {
+                let html = `
+                    <form class="needs-validation" id="check-availability-form" action="" method="POST" novalidate>
+                        <div class="form-row">
+                            <div class="col">
+                                <div class="form-row" id="reservation-dates-modal">
+                                    <div class="col">
+                                        <input disabled required class="form-control" type="text" name="start" id="start" placeholder="Arrival">
+                                    </div>
+                                    <div class="col">
+                                        <input disabled required class="form-control" type="text" name="end" id="end" placeholder="Departure">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                `;
+                // notify("Warning", "warning")
+                attention.custom({ msg: html, title: "Choose you dates", });
+            })
+    </script>
+{{end}}
