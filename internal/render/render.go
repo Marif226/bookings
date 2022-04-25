@@ -7,8 +7,10 @@ import (
 	"log"
 	"net/http"
 	"path/filepath"
-	"github.com/marif226/bookings/pkg/models"
+
+	"github.com/justinas/nosurf"
 	"github.com/marif226/bookings/pkg/config"
+	"github.com/marif226/bookings/pkg/models"
 )
 
 var functions = template.FuncMap {
@@ -22,11 +24,13 @@ func NewTemplates(a *config.AppConfig) {
 	app = a
 }
 
-func AddDefaultData(templData *models.TemplateData) *models.TemplateData {
+func AddDefaultData(templData *models.TemplateData, r *http.Request) *models.TemplateData {
+	templData.CSRFToken = nosurf.Token(r)
+
 	return templData
 }
 
-func RenderTemplate(w http.ResponseWriter, tmpl string, tmplData *models.TemplateData) {
+func RenderTemplate(w http.ResponseWriter, r *http.Request, tmpl string, tmplData *models.TemplateData) {
 	var templateCache map[string]*template.Template
 	if app.UseCache {
 		// get the template cache from the app config
@@ -44,7 +48,7 @@ func RenderTemplate(w http.ResponseWriter, tmpl string, tmplData *models.Templat
 	// holds bytes
 	buf := new(bytes.Buffer)
 
-	tmplData = AddDefaultData(tmplData)
+	tmplData = AddDefaultData(tmplData, r)
 
 	// store executed template in buf
 	_ = t.Execute(buf, tmplData)
