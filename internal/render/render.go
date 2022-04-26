@@ -9,8 +9,8 @@ import (
 	"path/filepath"
 
 	"github.com/justinas/nosurf"
-	"github.com/marif226/bookings/pkg/config"
-	"github.com/marif226/bookings/pkg/models"
+	"github.com/marif226/bookings/internal/config"
+	"github.com/marif226/bookings/internal/models"
 )
 
 var functions = template.FuncMap {
@@ -25,8 +25,10 @@ func NewTemplates(a *config.AppConfig) {
 }
 
 func AddDefaultData(templData *models.TemplateData, r *http.Request) *models.TemplateData {
+	templData.Flash = app.Session.PopString(r.Context(), "flash")
+	templData.Error = app.Session.PopString(r.Context(), "error")
+	templData.Warning = app.Session.PopString(r.Context(), "warning")
 	templData.CSRFToken = nosurf.Token(r)
-
 	return templData
 }
 
