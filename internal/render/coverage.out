@@ -1,0 +1,23 @@
+mode: set
+github.com/marif226/bookings/internal/render/render.go:24.40,26.2 1 1
+github.com/marif226/bookings/internal/render/render.go:28.91,34.2 5 1
+github.com/marif226/bookings/internal/render/render.go:36.111,38.18 2 1
+github.com/marif226/bookings/internal/render/render.go:46.2,47.9 2 1
+github.com/marif226/bookings/internal/render/render.go:52.2,60.16 5 1
+github.com/marif226/bookings/internal/render/render.go:65.2,65.12 1 1
+github.com/marif226/bookings/internal/render/render.go:38.18,41.3 1 0
+github.com/marif226/bookings/internal/render/render.go:41.8,43.3 1 1
+github.com/marif226/bookings/internal/render/render.go:47.9,49.3 1 1
+github.com/marif226/bookings/internal/render/render.go:60.16,63.3 2 0
+github.com/marif226/bookings/internal/render/render.go:69.67,75.16 3 1
+github.com/marif226/bookings/internal/render/render.go:79.2,79.29 1 1
+github.com/marif226/bookings/internal/render/render.go:106.2,106.21 1 1
+github.com/marif226/bookings/internal/render/render.go:75.16,77.3 1 0
+github.com/marif226/bookings/internal/render/render.go:79.29,84.17 3 1
+github.com/marif226/bookings/internal/render/render.go:89.3,90.17 2 1
+github.com/marif226/bookings/internal/render/render.go:94.3,94.23 1 1
+github.com/marif226/bookings/internal/render/render.go:103.3,103.27 1 1
+github.com/marif226/bookings/internal/render/render.go:84.17,86.4 1 0
+github.com/marif226/bookings/internal/render/render.go:90.17,92.4 1 0
+github.com/marif226/bookings/internal/render/render.go:94.23,97.18 2 1
+github.com/marif226/bookings/internal/render/render.go:97.18,99.5 1 0

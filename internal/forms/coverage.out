@@ -1,0 +1,19 @@
+mode: set
+github.com/marif226/bookings/internal/forms/errors.go:6.44,8.2 1 1
+github.com/marif226/bookings/internal/forms/errors.go:11.42,13.18 2 1
+github.com/marif226/bookings/internal/forms/errors.go:17.2,17.14 1 1
+github.com/marif226/bookings/internal/forms/errors.go:13.18,15.3 1 1
+github.com/marif226/bookings/internal/forms/forms.go:18.33,23.2 1 1
+github.com/marif226/bookings/internal/forms/forms.go:26.39,28.13 2 1
+github.com/marif226/bookings/internal/forms/forms.go:31.2,31.13 1 1
+github.com/marif226/bookings/internal/forms/forms.go:28.13,30.3 1 1
+github.com/marif226/bookings/internal/forms/forms.go:35.29,37.2 1 1
+github.com/marif226/bookings/internal/forms/forms.go:40.43,41.31 1 1
+github.com/marif226/bookings/internal/forms/forms.go:41.31,43.37 2 1
+github.com/marif226/bookings/internal/forms/forms.go:43.37,45.4 1 1
+github.com/marif226/bookings/internal/forms/forms.go:50.57,52.21 2 1
+github.com/marif226/bookings/internal/forms/forms.go:56.2,56.13 1 1
+github.com/marif226/bookings/internal/forms/forms.go:52.21,55.3 2 1
+github.com/marif226/bookings/internal/forms/forms.go:60.43,61.40 1 1
+github.com/marif226/bookings/internal/forms/forms.go:65.2,65.13 1 1
+github.com/marif226/bookings/internal/forms/forms.go:61.40,64.3 2 1

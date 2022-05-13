@@ -1,0 +1,22 @@
+mode: set
+github.com/marif226/bookings/internal/handlers/handlers.go:24.47,28.2 1 1
+github.com/marif226/bookings/internal/handlers/handlers.go:31.33,33.2 1 1
+github.com/marif226/bookings/internal/handlers/handlers.go:36.67,41.2 3 1
+github.com/marif226/bookings/internal/handlers/handlers.go:44.68,55.2 5 1
+github.com/marif226/bookings/internal/handlers/handlers.go:58.71,60.2 1 1
+github.com/marif226/bookings/internal/handlers/handlers.go:63.69,65.2 1 1
+github.com/marif226/bookings/internal/handlers/handlers.go:68.75,70.2 1 1
+github.com/marif226/bookings/internal/handlers/handlers.go:73.74,82.2 4 1
+github.com/marif226/bookings/internal/handlers/handlers.go:85.78,87.16 2 1
+github.com/marif226/bookings/internal/handlers/handlers.go:92.2,106.19 7 1
+github.com/marif226/bookings/internal/handlers/handlers.go:117.2,119.66 2 1
+github.com/marif226/bookings/internal/handlers/handlers.go:87.16,90.3 2 0
+github.com/marif226/bookings/internal/handlers/handlers.go:106.19,115.3 4 0
+github.com/marif226/bookings/internal/handlers/handlers.go:123.79,128.2 3 1
+github.com/marif226/bookings/internal/handlers/handlers.go:136.79,143.16 3 0
+github.com/marif226/bookings/internal/handlers/handlers.go:147.2,148.14 2 0
+github.com/marif226/bookings/internal/handlers/handlers.go:143.16,145.3 1 0
+github.com/marif226/bookings/internal/handlers/handlers.go:152.70,154.2 1 1
+github.com/marif226/bookings/internal/handlers/handlers.go:157.81,159.9 2 1
+github.com/marif226/bookings/internal/handlers/handlers.go:166.2,173.4 4 0
+github.com/marif226/bookings/internal/handlers/handlers.go:159.9,164.3 4 1
