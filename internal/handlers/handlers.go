@@ -3,11 +3,11 @@ package handlers
 import (
 	"encoding/json"
 	"fmt"
-	"log"
 	"net/http"
 
 	"github.com/marif226/bookings/internal/config"
 	"github.com/marif226/bookings/internal/forms"
+	"github.com/marif226/bookings/internal/helpers"
 	"github.com/marif226/bookings/internal/models"
 	"github.com/marif226/bookings/internal/render"
 )
@@ -34,24 +34,14 @@ func NewHandlers(r *Repository) {
 
 // Home is the home page handler
 func (m *Repository) Home(w http.ResponseWriter, r *http.Request) {
-	remoteIp := r.RemoteAddr
-	m.App.Session.Put(r.Context(), "remote_ip", remoteIp)
-
+	
 	render.RenderTemplate(w, r, "home.page.html", &models.TemplateData{})
 }
 
 // About is the about page handler
 func (m *Repository) About(w http.ResponseWriter, r *http.Request) {
-	// perform some logic
-	stringMap := make(map[string]string)
-	stringMap["test"] = "Hello test!"
-
-	remoteIp := m.App.Session.GetString(r.Context(), "remote_ip")
-	stringMap["remote_ip"] = remoteIp
-
-	render.RenderTemplate(w, r, "about.page.html", &models.TemplateData{
-		StringMap: stringMap,
-	})
+	// send the data to the template
+	render.RenderTemplate(w, r, "about.page.html", &models.TemplateData{})
 }
 
 // Generals renders the generals room page
@@ -85,7 +75,7 @@ func (m *Repository) Reservation(w http.ResponseWriter, r *http.Request) {
 func (m *Repository) PostReservation(w http.ResponseWriter, r *http.Request) {
 	err := r.ParseForm()
 	if err != nil {
-		log.Println(err)
+		helpers.ServerError(w, err)
 		return
 	}
 
@@ -141,7 +131,8 @@ func (m *Repository) AvailabilityJSON(w http.ResponseWriter, r *http.Request) {
 
 	out, err := json.MarshalIndent(resp, "", "    ")
 	if err != nil {
-		log.Println(err)
+		helpers.ServerError(w, err)
+		return
 	}
 
 	w.Header().Set("Content-Type", "application/json")
@@ -157,7 +148,7 @@ func (m *Repository) Contact(w http.ResponseWriter, r *http.Request) {
 func (m *Repository) ReservationSummary(w http.ResponseWriter, r *http.Request) {
 	reservation, ok := m.App.Session.Get(r.Context(), "reservation").(models.Reservation)
 	if !ok {
-		log.Println("Cannot get item from Session")
+		m.App.ErrorLog.Println("Can't get error from session")
 		m.App.Session.Put(r.Context(), "error", "Cannot get reservation from session!")
 		http.Redirect(w, r, "/", http.StatusTemporaryRedirect)
 		return
