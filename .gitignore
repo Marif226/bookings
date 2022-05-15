@@ -1,1 +1,7 @@
 cmd/web/coverage.out
+internal/forms/coverage.out
+internal/render/coverage.out
+internal/handlers/coverage.out
+run.sh
+run.bat
+database.yml
