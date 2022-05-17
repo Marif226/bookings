@@ -14,6 +14,7 @@ import (
 	"github.com/marif226/bookings/internal/helpers"
 	"github.com/marif226/bookings/internal/models"
 	"github.com/marif226/bookings/internal/render"
+	"github.com/marif226/bookings/internal/driver"
 )
 
 const portNumber = ":8080"
@@ -24,10 +25,12 @@ var errorLog 	*log.Logger
 
 // Main application function
 func main() {
-	err := run()
+	db, err := run()
 	if err != nil {
 		log.Fatal(err)
 	}
+
+	defer db.SQL.Close()
 
 	serv := &http.Server{
 		Addr: portNumber,
@@ -41,10 +44,13 @@ func main() {
 	}
 }
 
-func run() error {
+func run() (*driver.DB, error) {
 	// what am i going to put in the session
 
 	gob.Register(models.Reservation{})
+	gob.Register(models.User{})
+	gob.Register(models.Room{})
+	gob.Register(models.Restriction{})
 
 	// change to true when in production
 	app.InProduction = false
@@ -64,11 +70,20 @@ func run() error {
 
 	app.Session = session
 
+	// connect to database
+	log.Println("Connecting to database...")
+	db, err := driver.ConnectSQL("host=localhost port=5432 dbname=bookings user=postgres password=minecraft132")
+	if err != nil {
+		log.Fatal("Cannot connect to database! Dying...")
+	}
+
+	log.Println("Connected to database!")
+
 	// create template cache
 	templateCache, err := render.CreateTemplateCache()
 	if err != nil {
 		log.Fatal("Cannot create template cache: ", err)
-		return err
+		return nil, err
 	}
 
 	// store template cache in application
@@ -76,14 +91,14 @@ func run() error {
 	app.UseCache = false
 
 	// create new repository that holds app config
-	repo := handlers.NewRepo(&app)
+	repo := handlers.NewRepo(&app, db)
 	// set this repository for handlers package
 	handlers.NewHandlers(repo)
 
 	// set app config for render package
-	render.NewTemplates(&app)
+	render.NewRenderer(&app)
 
 	helpers.NewHelpers(&app)
 
-	return nil
+	return db, nil
 }
