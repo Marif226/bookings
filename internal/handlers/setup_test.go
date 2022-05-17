@@ -9,7 +9,7 @@ import (
 	"os"
 	"path/filepath"
 	"time"
-
+	"testing"
 	"github.com/alexedwards/scs/v2"
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"
@@ -20,12 +20,11 @@ import (
 )
 
 var functions = template.FuncMap {}
-
 var app config.AppConfig
 var session *scs.SessionManager
 var pathToTemplates = "./../../templates"
 
-func getRoutes() http.Handler {
+func TestMain(m *testing.M) {
 	// what am i going to put in the session
 	gob.Register(models.Reservation{})
 
@@ -58,13 +57,17 @@ func getRoutes() http.Handler {
 	app.UseCache = true
 
 	// create new repository that holds app config
-	repo := NewRepo(&app)
+	repo := NewTestRepo(&app)
 	// set this repository for handlers package
 	NewHandlers(repo)
 
 	// set app config for render package
 	render.NewRenderer(&app)
 
+	os.Exit(m.Run())
+}
+
+func getRoutes() http.Handler {
 	mux := chi.NewRouter()
 
 	mux.Use(middleware.Recoverer)
