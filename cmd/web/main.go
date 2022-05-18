@@ -5,16 +5,17 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"net/smtp"
 	"os"
 	"time"
 
 	"github.com/alexedwards/scs/v2"
 	"github.com/marif226/bookings/internal/config"
+	"github.com/marif226/bookings/internal/driver"
 	"github.com/marif226/bookings/internal/handlers"
 	"github.com/marif226/bookings/internal/helpers"
 	"github.com/marif226/bookings/internal/models"
 	"github.com/marif226/bookings/internal/render"
-	"github.com/marif226/bookings/internal/driver"
 )
 
 const portNumber = ":8080"
@@ -32,12 +33,26 @@ func main() {
 
 	defer db.SQL.Close()
 
+	defer close(app.MailChan)
+
+	fmt.Println("Starting mail lestener...")
+	listenToMail()
+
+	fmt.Printf("Starting application on port %s\n", portNumber)
+
+	from := "me@here.com"
+	auth := smtp.PlainAuth("", from, "", "localhost")
+	err = smtp.SendMail("localhost:1025", auth, from, []string{"you@there.com"}, []byte("Hello, world!"))
+	if err != nil {
+		log.Println(err)
+	}	
+
 	serv := &http.Server{
 		Addr: portNumber,
 		Handler: routes(&app),
 	}
 
-	fmt.Printf("Starting application on port %s\n", portNumber)
+	
 	err = serv.ListenAndServe()
 	if err != nil {
 		log.Fatal(err)
@@ -51,6 +66,10 @@ func run() (*driver.DB, error) {
 	gob.Register(models.User{})
 	gob.Register(models.Room{})
 	gob.Register(models.Restriction{})
+
+	mailChan := make(chan models.MailData)
+	app.MailChan = mailChan
+
 
 	// change to true when in production
 	app.InProduction = false

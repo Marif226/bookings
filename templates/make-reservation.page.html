@@ -18,7 +18,7 @@
                         <input type="hidden" name="end_date" value="{{index .StringMap "end_date"}}">
                         <input type="hidden" name="room_id" value="{{$res.RoomID}}">
 
-                        <div class="form-group mt-5">
+                        <div class="form-group mt-3">
                             <label for="first_name">First name:</label>
                             {{with .Form.Errors.Get "first_name"}}
                                 <label class="text-danger">{{.}}</label>
