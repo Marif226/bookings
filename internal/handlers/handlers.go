@@ -150,14 +150,23 @@ func (m *Repository) PostReservation(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	// add this to fix invalid data error
+	room, err := m.DB.GetRoomByID(roomID)
+	if err != nil {
+		m.App.Session.Put(r.Context(), "error", "can't find room!")
+		http.Redirect(w, r, "/", http.StatusSeeOther)
+		return
+	}
+
 	reservation := models.Reservation {
-		RoomID: roomID,
 		FirstName: r.Form.Get("first_name"),
 		LastName: r.Form.Get("last_name"),
 		Phone: r.Form.Get("phone"),
 		Email: r.Form.Get("email"),
 		StartDate: startDate,
 		EndDate: endDate,
+		RoomID: roomID,
+		Room: room,
 	}
 
 	form := forms.New(r.PostForm)
